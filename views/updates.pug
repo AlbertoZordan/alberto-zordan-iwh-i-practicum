@@ -1,0 +1,25 @@
+doctype html
+html
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title= title
+    body
+        h1 Create New Anime Character
+        
+        form(action="/update-cobj" method="POST")
+            div
+                label(for="name") Character Name:
+                input(type="text" id="name" name="name" required)
+            
+            div
+                label(for="anime") Anime Series:
+                input(type="text" id="anime" name="anime" required)
+            
+            div
+                label(for="age") Age:
+                input(type="number" id="age" name="age" required)
+            
+            button(type="submit") Create Character
+        
+        a(href="/") Return to the homepage
