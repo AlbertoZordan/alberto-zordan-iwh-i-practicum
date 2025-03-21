@@ -4,6 +4,8 @@ html
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title
+        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css")
+        script(src="https://cdn.jsdelivr.net/npm/toastify-js")
         script(src="https://cdn.tailwindcss.com")
     body(class="bg-gray-50")
         div(class="container mx-auto px-4 py-8 max-w-6xl")
@@ -43,3 +45,13 @@ html
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     ) Create Character
             a(href="/" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800") Return to the homepage
+        if error
+            script.
+                Toastify({
+                    text: '#{error}',
+                    duration: 3000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    style: { background: "#EF4444" }
+                }).showToast();

@@ -25,9 +25,18 @@ app.get("/", async (req, res) => {
   try {
     const resp = await axios.get(animeCharacters, { headers });
     const data = resp.data.results;
-    res.render("homepage", { title: "Anime Characters | Homepage", data });
+    res.render("homepage", {
+      title: "Anime Characters Homepage | Integrating With HubSpot I Practicum",
+      data,
+      error: req.query.error,
+    });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching anime characters:", error);
+    res.render("homepage", {
+      title: "Anime Characters Homepage | Integrating With HubSpot I Practicum",
+      data: [],
+      error: "Failed to load characters",
+    });
   }
 });
 
@@ -61,53 +70,12 @@ app.post("/update-cobj", async (req, res) => {
     res.redirect("/");
   } catch (error) {
     console.error("Create Error:", error.response?.data || error.message);
-    res.status(500).send("Error creating character");
+    res.render("updates", {
+      title: "Create Anime Character",
+      error: "Failed to create character",
+    });
   }
 });
-
-/** 
-* * This is sample code to give you a reference for how you should structure your calls. 
-
-* * App.get sample
-app.get('/contacts', async (req, res) => {
-    const contacts = 'https://api.hubspot.com/crm/v3/objects/contacts';
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    }
-    try {
-        const resp = await axios.get(contacts, { headers });
-        const data = resp.data.results;
-        res.render('contacts', { title: 'Contacts | HubSpot APIs', data });      
-    } catch (error) {
-        console.error(error);
-    }
-});
-
-* * App.post sample
-app.post('/update', async (req, res) => {
-    const update = {
-        properties: {
-            "favorite_book": req.body.newVal
-        }
-    }
-
-    const email = req.query.email;
-    const updateContact = `https://api.hubapi.com/crm/v3/objects/contacts/${email}?idProperty=email`;
-    const headers = {
-        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
-        'Content-Type': 'application/json'
-    };
-
-    try { 
-        await axios.patch(updateContact, update, { headers } );
-        res.redirect('back');
-    } catch(err) {
-        console.error(err);
-    }
-
-});
-*/
 
 // * Localhost
 app.listen(3000, () => console.log("Listening on http://localhost:3000"));
