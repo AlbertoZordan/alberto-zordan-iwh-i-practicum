@@ -6,5 +6,19 @@ html
         title= title
     body
         h1 Anime Characters Table
-        
-        a(href="/update-cobj") Create New Anime Character
+        a(href="/update-cobj") Add to this table
+        if data && data.length
+            table(border="1")
+                thead
+                    tr
+                        th Name
+                        th Anime
+                        th Age
+                tbody
+                    each item in data
+                        tr
+                            td= item.properties.name
+                            td= item.properties.anime
+                            td= item.properties.age
+        else
+            p No anime characters found.
