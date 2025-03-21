@@ -4,22 +4,42 @@ html
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title= title
-    body
-        h1 Create New Anime Character
-        
-        form(action="/update-cobj" method="POST")
-            div
-                label(for="name") Character Name:
-                input(type="text" id="name" name="name" required)
-            
-            div
-                label(for="anime") Anime Series:
-                input(type="text" id="anime" name="anime" required)
-            
-            div
-                label(for="age") Age:
-                input(type="number" id="age" name="age" required)
-            
-            button(type="submit") Create Character
-        
-        a(href="/") Return to the homepage
+        script(src="https://cdn.tailwindcss.com")
+    body(class="bg-gray-50")
+        div(class="container mx-auto px-4 py-8 max-w-6xl")
+            h1(class="text-3xl font-bold mb-6") Create New Anime Character
+
+            form(action="/update-cobj" method="POST" class="max-w-lg bg-white p-6 rounded-lg shadow")
+                div(class="mb-4")
+                    label(for="name" class="block text-gray-700 text-sm font-bold mb-2") Character Name
+                    input#name(
+                        type="text"
+                        name="name"
+                        required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    )
+                
+                div(class="mb-4")
+                    label(for="anime" class="block text-gray-700 text-sm font-bold mb-2") Anime Series
+                    input#anime(
+                        type="text"
+                        name="anime"
+                        required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    )
+                
+                div(class="mb-6")
+                    label(for="age" class="block text-gray-700 text-sm font-bold mb-2") Age
+                    input#age(
+                        type="number"
+                        name="age"
+                        required
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    )
+                
+                div(class="flex items-center justify-between")
+                    button(
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    ) Create Character
+            a(href="/" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800") Return to the homepage
